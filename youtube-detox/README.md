@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/public/filtered.png">
-  <h2>filtered.</h2>
-  <h3>Your only solution to customizable youtube feed space</h3>
+  <img src="./public/filtered2.png" alt="filtered"  width="200px">
+  <h3> <b>filtered.</b> </h3>
+  <b>Your only solution to customizable youtube feed space</b>
 </div>
