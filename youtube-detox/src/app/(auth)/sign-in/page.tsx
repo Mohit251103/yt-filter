@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
+import { signIn } from 'next-auth/react';
 
 const Signup = () => {
     const [open,setOpen] = useState(true);
@@ -18,7 +19,7 @@ const Signup = () => {
                     {/* <p className='text-2xl font-bold'>Welcome to </p> */}
                 </div>
                 <div className='flex flex-col justify-center items-center rounded-r-lg bg-white h-full w-full p-5 relative'>
-                    <button className='text-xl rounded-xl p-2 flex border border-[black] transition duration-300 hover:scale-[1.01] hover:shadow hover:shadow-black'>
+                    <button className='text-xl rounded-xl p-2 flex border border-[black] transition duration-300 hover:scale-[1.01] hover:shadow hover:shadow-black' onClick={()=>signIn("google",{callbackUrl:"/dashboard"})}>
                         <img src="/icons8-google-48.png" width={30} height={30} />
                         <span className='mx-2'>Sign Up using Google</span>
                     </button>
