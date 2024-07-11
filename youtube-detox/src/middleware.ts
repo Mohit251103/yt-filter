@@ -5,18 +5,23 @@ export { default } from "next-auth/middleware";
 export async function middleware(req: NextRequest) {
 
     const token = await getToken({ req });
+    // console.log(token);
     const url = req.nextUrl;
-    const absUrl = req.nextUrl.clone();
     if (token && url.pathname.startsWith("/sign-in")) {
-        absUrl.pathname = "/dashboard"
-        NextResponse.redirect(absUrl);
+        return NextResponse.redirect(new URL('/dashboard', req.url));
     }
-    else {
-        absUrl.pathname = "/"
-        NextResponse.rewrite(absUrl)
+    else if (!token && url.pathname.startsWith("/dashboard")) {
+        return NextResponse.redirect(new URL('/sign-in', req.url))
+    }
+
+    if (url.pathname.startsWith("/dashboard") && !token?.username) {
+
+        
+        return NextResponse.redirect(new URL('/profile/edit/?type=first-time', req.url));
+
     }
 }
 
 export const config = {
-    matcher: ['/sign-in','/dashboard','/']
+    matcher: ['/sign-in', '/dashboard', '/', '/profile/edit']
 }
