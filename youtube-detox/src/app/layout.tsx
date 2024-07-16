@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import { open_sans } from "./ui/fonts";
 import "./globals.css";
 import AuthProvider from "./context/AuthProvider";
-import {Toaster} from "react-hot-toast"
+import UserProvider from "./context/UserProvider";
+import { Toaster } from "react-hot-toast"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-      <html lang="en">
-        <body className={`${open_sans.className} antialiased`}>
-          <Toaster/>
-          {children}
+      <UserProvider>
+        <html lang="en">
+          <body className={`${open_sans.className} antialiased`}>
+            <Toaster />
+            {children}
           </body>
-      </html>
+        </html>
+      </UserProvider>
     </AuthProvider>
   );
 }
