@@ -5,6 +5,7 @@ import "./globals.css";
 import AuthProvider from "./context/AuthProvider";
 import UserProvider from "./context/UserProvider";
 import { Toaster } from "react-hot-toast"
+import { ThemeProvider } from "./context/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-      <UserProvider>
-        <html lang="en">
-          <body className={`${open_sans.className} antialiased`}>
-            <Toaster />
-            {children}
-          </body>
-        </html>
-      </UserProvider>
+      <ThemeProvider>
+        <UserProvider>
+          <html lang="en">
+            <body className={`${open_sans.className} antialiased`}>
+              <Toaster />
+              {children}
+            </body>
+          </html>
+        </UserProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

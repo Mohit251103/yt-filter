@@ -7,22 +7,26 @@ export async function middleware(req: NextRequest) {
 
     const token = await getToken({ req });
     const username = cookies().get("username")?.value;
-    console.log(username);
     const url = req.nextUrl;
-    // console.log(url);
-    if (token && url.pathname.startsWith("/sign-in")) {
+    const pathname = url.pathname;
+    // console.log(url.pathname);
+    if (token && (pathname === "/sign-in" || pathname === "/")) {
         return NextResponse.redirect(new URL('/dashboard', req.url));
     }
-    else if (!token && url.pathname.startsWith("/dashboard")) {
-        return NextResponse.redirect(new URL('/sign-in', req.url))
+    
+    if (!token && pathname === "/dashboard") {
+        return NextResponse.redirect(new URL('/', req.url))
     }
 
-    if (url.pathname.startsWith("/dashboard") && !token?.username && !username) {
-
-        
+    if (pathname === "/dashboard" && !token?.username && !username) {
         return NextResponse.redirect(new URL('/profile/edit/?type=first-time', req.url));
-
     }
+
+    if(pathname === "/profile/edit" && url.searchParams.get('type')==="first-time" && (token?.username || username)){
+        return NextResponse.redirect(new URL('/dashboard', req.url));
+    }
+
+    return NextResponse.next();
 }
 
 export const config = {
