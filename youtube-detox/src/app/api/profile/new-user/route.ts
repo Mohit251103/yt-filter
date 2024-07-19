@@ -9,10 +9,15 @@ export const POST = async (req:Request) => {
     try {
         await dbconnect();
         const {username} = await req.json();
+
+        if(await User.findOne({username})){
+            return Response.json({message:"Username occupied",success:false});
+        }
+
         const session = await getServerSession(options);
         const user = await User.findOne({email:session?.user.email});
         if(!user){
-            return Response.json({message:"User does not exist",success:false, status:402});
+            return Response.json({message:"User does not exist",success:false, status:404});
         }
 
         user.username = username;

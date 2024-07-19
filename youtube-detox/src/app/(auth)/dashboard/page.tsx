@@ -43,8 +43,8 @@ const Dashboard = () => {
                             {theme=="light"?<DarkModeIcon/>:<LightModeIcon sx={{color: 'white'}}/>}
                         </div>
                         <VerifiedIcon color='primary'/>
-                        <div className='flex justify-center items-center me-2 hover:cursor-pointer' onClick={() => setOpen(!open)}>
-                            <img src={profilePhoto} width={40} className='rounded-full ms-1' />
+                        <div className='flex justify-center items-center me-2' onClick={() => setOpen(!open)}>
+                            <img src={profilePhoto} width={40} className='rounded-full ms-1 hover:shadow hover:shadow-slate-500/50 hover:cursor-pointer' />
                         </div>
                     </div>
                     <div className='flex h-[90vh] '>
