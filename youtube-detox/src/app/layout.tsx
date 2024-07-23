@@ -6,6 +6,8 @@ import AuthProvider from "./context/AuthProvider";
 import UserProvider from "./context/UserProvider";
 import { Toaster } from "react-hot-toast"
 import { ThemeProvider } from "./context/ThemeProvider";
+import { SidebarContext, SidebarContextProvider } from "./context/SidebarContext";
+import { useContext } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,16 +21,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+   
   return (
     <AuthProvider>
       <ThemeProvider>
         <UserProvider>
-          <html lang="en">
-            <body className={`${open_sans.className} antialiased`}>
-              <Toaster />
-              {children}
-            </body>
-          </html>
+          <SidebarContextProvider>
+            <html lang="en">
+              <body className={`${open_sans.className} antialiased`}>
+                <Toaster />
+                {children}
+              </body>
+            </html>
+          </SidebarContextProvider>
         </UserProvider>
       </ThemeProvider>
     </AuthProvider>
