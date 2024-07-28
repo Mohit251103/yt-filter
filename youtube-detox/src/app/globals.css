@@ -25,14 +25,14 @@ body {
     )
     rgb(var(--background-start-rgb));
   ::-webkit-scrollbar{
-    width: 5px;
+    width: 2px;
   }
   ::-webkit-scrollbar-track{
     border-radius: 5px;
     background-color: white;
   }
   ::-webkit-scrollbar-thumb{
-    background: linear-gradient(indigo,white);
+    background: black;
   }
 }
 

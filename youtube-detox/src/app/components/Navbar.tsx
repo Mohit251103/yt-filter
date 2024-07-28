@@ -24,7 +24,7 @@ const Navbar = () => {
     const { profilePhoto, username }: { profilePhoto: string, username: string } = useContext(UserContext);
     const { theme, setTheme } = useContext(ThemeContext);
     return (
-        <div className={`flex justify-between items-center`}>
+        <div className={`flex justify-between items-center ${drop && 'backdrop-blur-sm'}`}>
             <div className='rounded-full hover:cursor-pointer hover:rotate-180 transition duration-1000' onClick={(e) => { e.preventDefault(); setDrop(!drop) }}>
                 <MenuIcon className='mx-1' sx={{ color: `${theme == "dark" && 'white'}` }} />
             </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
             </div>
 
             <div className='absolute left-0 w-[15vw] top-12'>
-                <SideNav />
+                {drop && <SideNav />}
             </div>
             <div className='absolute right-0 w-[15vw] top-12'>
                 {open &&
