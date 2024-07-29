@@ -21,7 +21,7 @@ const SideNav = () => {
     },[])
 
     return (
-        <div className={`absolute z-10 w-fit h-[85vh] flex flex-col items-start mx-1 border-r p-1`}>
+        <div className={`z-10 w-fit h-[85vh] flex flex-col items-start mx-1 border-r p-1 bg-${theme==="dark"?"black":"white"}`}>
             <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer ${pathname==='/dashboard'?'bg-indigo-500/50':''}`} onClick={(e)=>{e.preventDefault(); router.push('/dashboard')}}>
                 <HomeIcon sx={{ color: `${theme == "dark" && 'white'}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme == "dark" && 'text-white'}`}>Home</p>}
