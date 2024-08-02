@@ -12,6 +12,7 @@ import { ThemeContext } from '@/app/context/ThemeProvider';
 import SideNav from '@/app/components/sidebar/SideNav';
 import { SidebarContext } from '@/app/context/SidebarContext';
 import SpaceList from '@/app/components/space/SpaceList';
+import { Footer } from '@/app/components/footer/Footer';
 
 
 const Dashboard = () => {
@@ -31,6 +32,7 @@ const Dashboard = () => {
                 <div className={`${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'} h-[100vh] w-[100vw]`}>
                     <Navbar/>
                     <SpaceList/>
+                    <Footer/>
                 </div>
             </>
             :

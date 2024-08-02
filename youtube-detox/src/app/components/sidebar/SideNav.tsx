@@ -21,8 +21,8 @@ const SideNav = () => {
     },[])
 
     return (
-        <div className={`z-10 w-fit h-[85vh] flex flex-col items-start mx-1 border-r p-1 bg-${theme==="dark"?"black":"white"}`}>
-            <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer ${pathname==='/dashboard'?'bg-indigo-500/50':''}`} onClick={(e)=>{e.preventDefault(); router.push('/dashboard')}}>
+        <div className={`absolute left-2 top-14 rounded-md border-2 z-10 w-fit flex flex-col items-start p-1 bg-${theme==="dark"?"black":"white"}`}>
+            <div className={`flex mb-4 mt-2 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer ${pathname==='/dashboard'?'bg-indigo-500/50':''}`} onClick={(e)=>{e.preventDefault(); router.push('/dashboard')}}>
                 <HomeIcon sx={{ color: `${theme == "dark" && 'white'}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme == "dark" && 'text-white'}`}>Home</p>}
             </div>
@@ -38,7 +38,7 @@ const SideNav = () => {
                 <StarsIcon sx={{ color: `${theme == "dark" && 'white'}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme == "dark" && 'text-white'}`}>Get Pro</p>}
             </div>
-            {drop ? <button className={`text-sm rounded-lg bg-indigo-500/50 p-2 mb-2 font-sans font-medium hover:shadow-lg hover:shadow-indigo-500 absolute bottom-0 self-center ${theme == "dark" && 'text-white'} `} onClick={() => { signOut({ callbackUrl: "/" }) }}><LogoutIcon sx={{ color: `${theme == "dark" && 'white'}` }} /> Sign Out</button>
+            {drop ? <button className={`text-sm rounded-lg bg-indigo-500/50 p-2 mb-2 font-sans font-medium hover:shadow-lg hover:shadow-indigo-500 self-center ${theme == "dark" && 'text-white'} `} onClick={() => { signOut({ callbackUrl: "/" }) }}><LogoutIcon sx={{ color: `${theme == "dark" && 'white'}` }} /> Sign Out</button>
                 :
                 <div className="mb-4 rounded-xl hover:bg-indigo-500/50 p-2 absolute bottom-0" onClick={() => { signOut({ callbackUrl: "/sign-in" }) }}>
                     <LogoutIcon sx={{ color: `${theme == "dark" && 'white'}` }} />

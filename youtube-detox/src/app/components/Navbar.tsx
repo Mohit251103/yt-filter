@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 // import { signOut } from 'next-auth/react';
@@ -24,11 +25,11 @@ const Navbar = () => {
     const { profilePhoto, username }: { profilePhoto: string, username: string } = useContext(UserContext);
     const { theme, setTheme } = useContext(ThemeContext);
     return (
-        <div className={`flex justify-between items-center ${drop && 'backdrop-blur-sm'} bg-${theme==="dark"?"black":"white"}`}>
+        <div className={`flex justify-between items-center ${drop && 'backdrop-blur-sm'} bg-${theme === "dark" ? "black" : "white"} h-[7vh] relative`}>
             <div className='rounded-full hover:cursor-pointer hover:rotate-180 transition duration-1000' onClick={(e) => { e.preventDefault(); setDrop(!drop) }}>
                 <MenuIcon className='mx-1' sx={{ color: `${theme == "dark" && 'white'}` }} />
             </div>
-            <div className='flex justify-between w-full h-[5vh] my-2'>
+            <div className='flex justify-between w-full  my-2'>
                 <div className={`flex justify-center items-center mx-1 transition duration-500 hover:-rotate-3`}>
                     <img src={theme == "light" ? "/filtered2.png" : "/filtered-dark.png"} alt="" width="100" />
                 </div>
@@ -41,9 +42,7 @@ const Navbar = () => {
                 <img src={profilePhoto} width={40} className='rounded-full ms-1 hover:shadow hover:shadow-slate-500/50 hover:cursor-pointer' />
             </div>
 
-            <div className='absolute left-0 w-[15vw] top-12'>
-                {drop && <SideNav />}
-            </div>
+            {drop && <SideNav />}
             <div className='absolute right-0 w-[15vw] top-12'>
                 {open &&
                     <Profile />

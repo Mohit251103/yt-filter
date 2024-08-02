@@ -2,6 +2,7 @@ import { ThemeContext } from "@/app/context/ThemeProvider"
 import { useContext } from "react"
 import { video } from '@/utils/rawData';
 import { Button, Card, CardContent, CardMedia } from '@mui/material';
+import { Footer } from "../footer/Footer";
 
 export const Space = ({ name }: { name: string }) => {
     const { theme } = useContext(ThemeContext);
@@ -61,5 +62,6 @@ export const Space = ({ name }: { name: string }) => {
                     }
                 </div>
             </div>
+            <Footer/>
         </div>)
 }

@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast"
 import { ThemeProvider } from "./context/ThemeProvider";
 import { SidebarContext, SidebarContextProvider } from "./context/SidebarContext";
 import { useContext } from "react";
+import { roboto } from "./ui/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
