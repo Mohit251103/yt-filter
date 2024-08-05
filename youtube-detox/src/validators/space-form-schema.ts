@@ -16,8 +16,5 @@ export const SpaceFormSchema = z.object({
     tags: z.string()
         .optional(),
 
-    theme: z.enum(["dark", "light"])
-        .optional(),
-
     needShorts: z.boolean().optional()
 })

@@ -1,0 +1,9 @@
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+::-webkit-scrollbar-track{
+    width: 0;
+}

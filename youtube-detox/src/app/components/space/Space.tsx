@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { video } from '@/utils/rawData';
 import { Button, Card, CardContent, CardMedia } from '@mui/material';
 import { Footer } from "../footer/Footer";
+// import "./css/space.css"
 
 export const Space = ({ name }: { name: string }) => {
     const { theme } = useContext(ThemeContext);

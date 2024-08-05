@@ -22,21 +22,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-   
+
   return (
     <AuthProvider>
-      <ThemeProvider>
-        <UserProvider>
-          <SidebarContextProvider>
-            <html lang="en">
-              <body className={`${open_sans.className} antialiased`}>
-                <Toaster />
-                {children}
-              </body>
-            </html>
-          </SidebarContextProvider>
-        </UserProvider>
-      </ThemeProvider>
+        <ThemeProvider>
+          <UserProvider>
+            <SidebarContextProvider>
+              <html lang="en">
+                <body className={`${open_sans.className} antialiased`}>
+                  <Toaster />
+                  {children}
+                </body>
+              </html>
+            </SidebarContextProvider>
+          </UserProvider>
+        </ThemeProvider>
     </AuthProvider>
   );
 }

@@ -52,15 +52,15 @@ const page = () => {
               <label id='no' className={`text-sm ml-1 ${theme=="dark" && "text-white"}`}>No</label>
               {errors.needShorts?.message && <p className='text-sm text-[red]'>{errors.needShorts?.message.toString()}</p>}
             </div>
-            <div className='m-2'>
+            {/* <div className='m-2'>
               <label htmlFor="theme" className={`text-sm font-bold ${theme=="dark" && "text-white"}`}>Theme</label>
               <select id="theme" className={`text-sm px-2 py-1 ml-2 rounded-sm ${theme=="dark"?"bg-black text-white":""}`}>
                 <option value="light" selected>Light</option>
                 <option value="dark">Dark</option>
               </select>
               {errors.theme?.message && <p className='text-sm text-[red]'>{errors.theme?.message.toString()}</p>}
-            </div>
-            <Button variant='contained'>Create</Button>
+            </div> */}
+            <Button variant='contained' className='mt-3'>Create</Button>
           </form>
         </div>
       </div>

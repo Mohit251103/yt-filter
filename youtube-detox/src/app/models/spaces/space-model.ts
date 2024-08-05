@@ -20,10 +20,6 @@ const SpaceSchema = new mongoose.Schema({
         type:String
     },
     tags:[String],
-    theme:{
-        type:String,
-        enum:["dark","light"]
-    },
     shortsVisible:{
         type:Boolean,
         default:true

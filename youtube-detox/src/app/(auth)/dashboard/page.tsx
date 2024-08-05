@@ -24,15 +24,16 @@ const Dashboard = () => {
         setLoading(false);
     }, [session])
 
-    
+
     const { theme, setTheme } = useContext(ThemeContext);
     return (
         !loading ?
             <>
-                <div className={`${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'} h-[100vh] w-[100vw]`}>
-                    <Navbar/>
-                    <SpaceList/>
-                    <Footer/>
+                <div className={`${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'} h-[100vh] w-[100vw]`} >
+                    <Navbar />
+                    <div className='overflow-auto' onClick={() => {setDrop(false); setOpen(false)}}>
+                        <SpaceList />
+                    </div>
                 </div>
             </>
             :

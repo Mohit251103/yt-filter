@@ -24,9 +24,13 @@ const Navbar = () => {
 
     const { profilePhoto, username }: { profilePhoto: string, username: string } = useContext(UserContext);
     const { theme, setTheme } = useContext(ThemeContext);
+    const handleClick = (e:any) => { 
+        e.preventDefault();
+        setDrop(!drop);
+    }
     return (
-        <div className={`flex justify-between items-center ${drop && 'backdrop-blur-sm'} bg-${theme === "dark" ? "black" : "white"} h-[7vh] relative`}>
-            <div className='rounded-full hover:cursor-pointer hover:rotate-180 transition duration-1000' onClick={(e) => { e.preventDefault(); setDrop(!drop) }}>
+        <div className={`flex fixed top-0 z-10 justify-between items-center ${drop && 'backdrop-blur-sm'} ${theme === "dark" ? "bg-black" : "bg-slate-100"} h-[7vh] sticky`}>
+            <div className='rounded-full hover:cursor-pointer hover:rotate-180 transition duration-1000' onClick={handleClick}>
                 <MenuIcon className='mx-1' sx={{ color: `${theme == "dark" && 'white'}` }} />
             </div>
             <div className='flex justify-between w-full  my-2'>
