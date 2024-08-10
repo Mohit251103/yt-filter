@@ -3,7 +3,7 @@ import { z } from "zod";
 export const SpaceFormSchema = z.object({
     title: z.string()
         .min(1, "Cannot be empty")
-        .max(20, "Cannot exceed more than 20 characters"),
+        .max(100, "Cannot exceed more than 20 characters"),
 
     category: z.string()
         .min(1, "Cannot be empty"),

@@ -21,7 +21,7 @@ const page = () => {
   const { theme } = useContext(ThemeContext);
   const [file, setFile] = useState<File>();
   const { edgestore } = useEdgeStore();
-  const {id} = useContext(UserContext);
+  const {userId} = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -48,7 +48,7 @@ const page = () => {
   const submitSpace = async () => {
     try {
       
-      const res = await axios.post(`/api/space/c?id=${id}`,space);
+      const res = await axios.post(`/api/space/c?id=${userId}`,space);
       toast.success("Space created successfully");
     } catch (error:any) {
       toast.error("Some error occured");
@@ -101,9 +101,10 @@ const page = () => {
                 <div className={`h-full transition duration-300 ${theme == "dark" ? "bg-white" : "bg-black"}`} style={{ width: `${progress}%` }}></div>
               </div>
               <button
-                onClick={async () => {
-                  setShowProgress(true);
+                onClick={async (e:any) => {
+                  e.preventDefault();
                   if (file) {
+                    setShowProgress(true);
                     const res = await edgestore.publicFiles.upload({
                       file,
                       onProgressChange: (progress) => {

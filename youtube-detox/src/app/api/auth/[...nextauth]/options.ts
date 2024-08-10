@@ -43,6 +43,7 @@ export const options:NextAuthOptions = {
           token.username = data.username;
         }
         token.picture = data.profilePhoto;
+        token.userId = data.id;
         if(!user){
           token.id = data.googleId
         }
@@ -58,6 +59,7 @@ export const options:NextAuthOptions = {
       session.user.email = token.email as string;
       session.user.image = token.picture as string;
       session.user.username = token.username as string;
+      session.user.userId = token.userId as string;
       return session
     }
   },
