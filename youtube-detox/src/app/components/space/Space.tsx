@@ -16,7 +16,7 @@ export const Space = ({ name }: { name: string }) => {
     return (
         <div className="flex flex-col justify-center items-center">
             <h2 className={`text-center text-4xl font-bold ${theme === "dark" ? "text-white" : "text-black"} mb-4`}><span className='text-indigo-500'>{name[0].toUpperCase() + name.substring(1)}</span> Space</h2>
-            <div className='flex h-[80vh] w-[80vw] justify-center items-center'>
+            <div className='flex h-[80vh] w-[100vw] justify-center items-center'>
 
                 <div className='flex flex-wrap gap-4 w-min h-full overflow-y-auto overflow-x-hidden'>
                     {video.data.map((item) => {
@@ -48,7 +48,7 @@ export const Space = ({ name }: { name: string }) => {
                             if (item && item.type === "shorts") {
                                 return (
                                     <div className='w-fit m-3'>
-                                        <Card sx={{ width: "320px", backgroundColor: theme === "dark" ? "black" : "white" }}>
+                                        <Card sx={{ width: "320px", backgroundColor: theme === "dark" ? "black" : "white", boxShadow:"" }} className="sm: md:h-[500px] shadow-black">
                                             <CardMedia sx={{ height: "fit-content", display: "flex", justifyContent: "center", alignItems: "center" }} >
                                                 <img src={`${item.thumbnail?.length && item.thumbnail[0].url}`} />
                                             </CardMedia>

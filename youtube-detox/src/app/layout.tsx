@@ -9,6 +9,7 @@ import { ThemeProvider } from "./context/ThemeProvider";
 import { SidebarContext, SidebarContextProvider } from "./context/SidebarContext";
 import { useContext } from "react";
 import { roboto } from "./ui/fonts";
+import { EdgeStoreProvider } from '../lib/edgestore';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,18 +26,20 @@ export default function RootLayout({
 
   return (
     <AuthProvider>
-        <ThemeProvider>
-          <UserProvider>
-            <SidebarContextProvider>
+      <ThemeProvider>
+        <UserProvider>
+          <SidebarContextProvider>
+            <EdgeStoreProvider>
               <html lang="en">
                 <body className={`${open_sans.className} antialiased`}>
                   <Toaster />
                   {children}
                 </body>
               </html>
-            </SidebarContextProvider>
-          </UserProvider>
-        </ThemeProvider>
+            </EdgeStoreProvider>
+          </SidebarContextProvider>
+        </UserProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

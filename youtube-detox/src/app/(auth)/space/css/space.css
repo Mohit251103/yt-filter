@@ -1,0 +1,11 @@
+textarea{
+    resize:none;
+}
+
+::-webkit-scrollbar-track{
+    display: none;
+}
+
+::-webkit-scrollbar-thumb{
+    display: none;
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import spaceData from '@/utils/spaceRaw'
 import { Button, Card, Typography } from '@mui/material'
 import CardContent from '@mui/material/CardContent';
@@ -7,8 +7,10 @@ import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from "next/navigation";
 import "./css/space.css"
 import { Footer } from '../footer/Footer';
+import { ThemeContext } from '@/app/context/ThemeProvider';
 const SpaceList = () => {
     const router = useRouter();
+    const {theme} = useContext(ThemeContext);
     return (
         <>
             <div className='flex flex-col justify-center items-center h-[92vh] w-full'>
@@ -24,25 +26,27 @@ const SpaceList = () => {
                     {
                         spaceData.map((space) => {
                             return (
-                                <Card sx={{ width: "300px", height: "370px", margin: "20px" }}>
-                                    <CardMedia >
-                                        <img src={space.displayPhoto} className='brightness-50' />
-                                    </CardMedia>
-                                    <CardContent>
-                                        <Typography variant='h4' sx={{ fontWeight: "bold" }}>
-                                            {space.title}
-                                        </Typography>
-                                        <Typography variant='body2' sx={{ fontWeight: "bold" }}>
-                                            Category: {space.category}
-                                        </Typography>
-                                        <Typography variant='body2' sx={{ fontWeight: "bold" }}>
-                                            Created At: {space.createdAt}
-                                        </Typography>
-                                        <Button variant='outlined' sx={{ marginTop: "5px" }} onClick={() => router.push("/space/react")}>
-                                            Start
-                                        </Button>
-                                    </CardContent>
-                                </Card>
+                                // <div className='shadow-xl w-fit h-fit'>
+                                    <Card sx={{ width: "300px", margin: "20px", backgroundColor:`${theme=="dark" && "black"}`, color:`${theme=="dark" && "rgb(203 213 225)"}`}} className={`md:h-[380px] sm:h-fit shadow-xl ${theme=="dark"? "shadow-black":""}`}>
+                                        <CardMedia >
+                                            <img src={space.displayPhoto} className='brightness-50' />
+                                        </CardMedia>
+                                        <CardContent>
+                                            <Typography variant='h4' sx={{ fontWeight: "bold" }}>
+                                                {space.title}
+                                            </Typography>
+                                            <Typography variant='body2' sx={{ fontWeight: "bold" }}>
+                                                Category: {space.category}
+                                            </Typography>
+                                            <Typography variant='body2' sx={{ fontWeight: "bold" }}>
+                                                Created At: {space.createdAt}
+                                            </Typography>
+                                            <Button variant='outlined' sx={{ marginTop: "5px" }} onClick={() => router.push("/space/react")}>
+                                                Start
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
+                                // </div>
                             )
                         })
                     }

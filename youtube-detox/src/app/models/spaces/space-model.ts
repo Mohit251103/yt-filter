@@ -16,6 +16,10 @@ const SpaceSchema = new mongoose.Schema({
         required:true,
         minlength:[1,"can't be blank"]
     },
+    description:{
+        type:String,
+        maxlength:[200,"can't be more than 200 characters"]
+    },
     displayPhoto:{
         type:String
     },
@@ -24,7 +28,9 @@ const SpaceSchema = new mongoose.Schema({
         type:Boolean,
         default:true
     },
-    createdAt:`${now.getDate()}-${now.getMonth()}-${now.getFullYear}`
+    createdAt:{
+        type:String,
+        default:`${now.getDate()}-${now.getMonth()}-${now.getFullYear()}`}
 })
 
-export const Space = mongoose.models.spaces || new mongoose.Model("spaces",SpaceSchema); 
+export const Space = mongoose.models.spaces || mongoose.model("spaces",SpaceSchema); 

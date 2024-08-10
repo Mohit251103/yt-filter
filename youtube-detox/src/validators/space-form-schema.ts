@@ -2,19 +2,20 @@ import { z } from "zod";
 
 export const SpaceFormSchema = z.object({
     title: z.string()
-        .min(1, "Set a name for your space")
-        .max(20, "Cannot exceed more than 20 characters")
-        .regex(/^[a-z0-9_]+$/, "Could only use lowercase letters, numbers and underscore"),
+        .min(1, "Cannot be empty")
+        .max(20, "Cannot exceed more than 20 characters"),
 
     category: z.string()
-        .min(1, "Category cannot be empty")
-        .regex(/^([A-Z][a-z]*|[A-Z]+|[a-z]+)$/, "Could only use lowercase or uppercase letters"),
+        .min(1, "Cannot be empty"),
+
+    description: z.string()
+    .max(200,"Cannot exceed 200 characters").optional(),
 
     photo: z.string()
-        .endsWith(`${"jpg" || "jpeg" || "png"}`, "Must be a valid image").optional(),
+        .endsWith(`${".jpg" || ".jpeg" || ".png"}`, "Must be a valid image").optional(),
 
     tags: z.string()
         .optional(),
 
-    needShorts: z.boolean().optional()
+    needShorts: z.enum(['1','0']).optional()
 })
