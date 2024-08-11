@@ -28,4 +28,16 @@ export const POST = async (req: Request, res: Response) => {
     }
 }
 
-dbconnect()
+export const GET = async (req:Request) => {
+    try {
+        await dbconnect();
+        const userId = req.url?.split("?id=")[1];
+
+        const space = await Space.find({userId});
+        // console.log(space);
+        return Response.json({data:space,status:200, success:true});
+    } catch (error) {
+        console.log(error);
+        return Response.json({message:error, status:500, success:false});
+    }
+}

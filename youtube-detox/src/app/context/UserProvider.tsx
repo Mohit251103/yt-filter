@@ -11,6 +11,7 @@ export default function UserProvider({
   }) {
 
     const {data:session} = useSession();
+    console.log(session);
 
     return <UserContext.Provider value={{userId:session?.user.userId,email:session?.user.email, profilePhoto:session?.user.image, username: session?.user.username}}>{children}</UserContext.Provider>
   }

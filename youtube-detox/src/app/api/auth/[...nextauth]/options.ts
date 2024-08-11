@@ -43,7 +43,7 @@ export const options:NextAuthOptions = {
           token.username = data.username;
         }
         token.picture = data.profilePhoto;
-        token.userId = data.id;
+        token.userId = data._id;
         if(!user){
           token.id = data.googleId
         }
