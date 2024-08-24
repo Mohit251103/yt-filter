@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from "next/navigation";
-import "./css/space.css"
+// import "./css/space.css"
 import { Footer } from '../footer/Footer';
 import { ThemeContext } from '@/app/context/ThemeProvider';
 import toast from 'react-hot-toast';
@@ -52,7 +52,7 @@ const SpaceList = () => {
     }, [session])
 
     if (!spaceData) {
-        <div className='flex flex-col justify-center items-center bg-white h-full w-full'>
+        return <div className='flex flex-col justify-center items-center bg-white h-full w-full'>
             <ThreeDots
                 visible={true}
                 height="80"

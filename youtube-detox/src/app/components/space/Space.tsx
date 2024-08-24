@@ -7,7 +7,7 @@ import axios from "axios";
 import { UserContext } from "@/app/context/UserProvider";
 import { useSession } from "next-auth/react";
 import { ThreeDots } from "react-loader-spinner";
-// import "./css/space.css"
+import "./css/space.css"
 
 interface videoDataType {
     type: string,
@@ -21,17 +21,20 @@ interface videoDataType {
     channelThumbnail: [{ url: string, width: number, height: number }]
 }
 
-export const Space = ({ name, id, userId }: { name: string, id: string, userId: string }) => {
+export const Space = ({ id, userId }: { id: string, userId: string }) => {
     const { theme } = useContext(ThemeContext);
     const { data: session, status } = useSession();
+
+    const [name, setName] = useState("");
 
     const [video, setVideo] = useState<videoDataType[]>([]);
     const fetchData = async () => {
         try {
             const res = await axios.get(`/api/space/get/${userId}/${id}`);
-            console.log(res.data.data.data);
-            setVideo(res.data.data.data);
-            return res.data.data.data;
+            // console.log(res);
+            setVideo(res.data.videos.data);
+            setName(res.data.title);
+
         } catch (error) {
             console.log(error);
         }
@@ -46,13 +49,13 @@ export const Space = ({ name, id, userId }: { name: string, id: string, userId: 
     }, [])
 
     // console.log(video);
-    let shorts: any = video.map((item) => {
-        // console.log(item.title.split("#"), item.type);
-        let itemType = item.title.split("#")[1];
-        if (itemType === "shorts") {
-            return item;
-        }
-    });
+    // let shorts: any = video.map((item) => {
+    //     // console.log(item.title.split("#"), item.type);
+    //     let itemType = item.title.split("#")[1];
+    //     if (itemType === "shorts") {
+    //         return item;
+    //     }
+    // });
     if (!video.length) {
         return (
             <div className='flex flex-col justify-center items-center'>
@@ -72,21 +75,22 @@ export const Space = ({ name, id, userId }: { name: string, id: string, userId: 
     // shorts = shorts[shorts.length - 1];
     return (
         <div className="flex flex-col justify-center items-center">
-            <h2 className={`text-center text-4xl font-bold ${theme === "dark" ? "text-white" : "text-black"} mb-4`}><span className='text-indigo-500'>{name[0].toUpperCase() + name.substring(1)}</span> Space</h2>
+            <p className={`text-center text-4xl font-bold ${theme === "dark" ? "text-white" : "text-black"} mb-4`}><span className='text-indigo-500'>{name[0].toUpperCase() + name.substring(1)}</span> Space</p>
             <div className='flex h-[80vh] w-[100vw] justify-center items-center'>
 
-                <div className='flex flex-wrap gap-4 w-min h-full overflow-y-auto overflow-x-hidden'>
+                <div className='flex flex-wrap gap-4 w-[900px] h-full overflow-y-auto overflow-x-hidden'>
                     {video.map((item) => {
                         if (item.type === 'video') {
                             return (
-                                <div className='relative w-fit h-fit'>
-                                    <Card sx={{ width: item.thumbnail?.length && item.thumbnail[0].width, height: item.thumbnail?.length && item.thumbnail[0].height + 150, backgroundColor: theme === "dark" ? "black" : "white" }}>
-                                        <CardMedia sx={{ width: item.thumbnail?.length && item.thumbnail[0].width, height: item.thumbnail?.length && item.thumbnail[0].height }}>
-                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} />}
+                                <div className='relative'>
+                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display:"flex", flexDirection:"row"}} className="w-[900px]">
+                                        <CardMedia>
+                                            {/* <div className={`w-[${item.thumbnail?.length && item.thumbnail[0].width}px] h-[${item.thumbnail?.length && item.thumbnail[0].height}px]`}></div> */}
+                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="w-[360px] h-[202px]"/>}
                                         </CardMedia>
                                         <CardContent>
                                             <p className={`text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{item.title}</p>
-                                            <p className={`absolute bottom-3 text-lg text-slate-500 flex`}>
+                                            <p className={`text-lg text-slate-500 flex`}>
                                                 <img src={`${item.channelThumbnail?.length && item.channelThumbnail[0].url}`} className='rounded-full me-1' width={30} height={20} alt="" />
                                                 {item.channelTitle}
                                             </p>

@@ -7,3 +7,7 @@
 ::-webkit-scrollbar-track{
     width: 0;
 }
+
+img{
+    max-width: none;
+}

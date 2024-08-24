@@ -15,7 +15,7 @@ const page = () => {
     return (
         <div className={`h-[100vh] bg-${theme==="dark"?"[rgb(13,13,13)]":"white"}`}>
             <Navbar />
-            {userId?<Space name={name as string} id={id as string} userId={userId}/>
+            {userId?<Space id={id as string} userId={userId}/>
             :
             <div className='flex flex-col justify-center items-center'>
                 <ThreeDots
