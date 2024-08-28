@@ -1,5 +1,5 @@
 import { ThemeContext } from "@/app/context/ThemeProvider"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { video } from '@/utils/rawData';
 import { Button, Card, CardContent, CardMedia } from '@mui/material';
 import { Footer } from "../footer/Footer";
@@ -23,18 +23,22 @@ interface videoDataType {
 
 export const Space = ({ id, userId }: { id: string, userId: string }) => {
     const { theme } = useContext(ThemeContext);
-    const { data: session, status } = useSession();
+    // const { data: session, status } = useSession();
 
     const [name, setName] = useState("");
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const observerRef = useRef<HTMLDivElement | null>(null);
 
     const [video, setVideo] = useState<videoDataType[]>([]);
     const fetchData = async () => {
         try {
-            const res = await axios.get(`/api/space/get/${userId}/${id}`);
-            // console.log(res);
-            setVideo(res.data.videos.data);
+            setLoading(true);
+            const res = await axios.get(`/api/space/get/${userId}/${id}?page=${page}`);
+            console.log(res.data.videos);
+            setVideo((prevVideo) => [...video, ...res.data.videos.data]);
             setName(res.data.title);
-
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -46,7 +50,26 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
         // if (userId) {
         fetchData()
         // }
-    }, [])
+    }, [page])
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !loading) {
+                setPage((prevPage) => prevPage + 1);
+            }
+        });
+
+        if (observerRef.current) {
+            observer.observe(observerRef.current);
+        }
+
+        return () => {
+            if (observerRef.current) {
+                observer.unobserve(observerRef.current);
+            }
+        };
+    }, [loading]);
+
 
     // console.log(video);
     // let shorts: any = video.map((item) => {
@@ -58,7 +81,7 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
     // });
     if (!video.length) {
         return (
-            <div className='flex flex-col justify-center items-center'>
+            <div className='h-[95vh] flex flex-col justify-center items-center'>
                 <ThreeDots
                     visible={true}
                     height="80"
@@ -74,19 +97,20 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
     }
     // shorts = shorts[shorts.length - 1];
     return (
-        <div className="flex flex-col justify-center items-center">
+        // <div className="flex flex-col justify-center items-center">
+        <>
             <p className={`text-center text-4xl font-bold ${theme === "dark" ? "text-white" : "text-black"} mb-4`}><span className='text-indigo-500'>{name[0].toUpperCase() + name.substring(1)}</span> Space</p>
-            <div className='flex h-[80vh] w-[100vw] justify-center items-center'>
+            <div className='flex flex-col w-[100vw] justify-center items-center overflow-y-scroll overflow-x-hidden'>
 
-                <div className='flex flex-wrap gap-4 w-[900px] h-full overflow-y-auto overflow-x-hidden'>
+                <div className='flex flex-wrap gap-4 w-[900px]'>
                     {video.map((item) => {
                         if (item.type === 'video') {
                             return (
                                 <div className='relative'>
-                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display:"flex", flexDirection:"row"}} className="w-[900px]">
+                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display: "flex", flexDirection: "row" }} className="w-[900px]">
                                         <CardMedia>
                                             {/* <div className={`w-[${item.thumbnail?.length && item.thumbnail[0].width}px] h-[${item.thumbnail?.length && item.thumbnail[0].height}px]`}></div> */}
-                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="w-[360px] h-[202px]"/>}
+                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="w-[360px] h-[202px]" />}
                                         </CardMedia>
                                         <CardContent>
                                             <p className={`text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{item.title}</p>
@@ -101,6 +125,9 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                         }
                     })}
                 </div>
+
+                {loading && <p>Loading...</p>}
+                <div ref={observerRef} style={{ height: '20px', color: "white" }}></div>
 
                 {/* {shorts?.length && <div className='flex flex-col overflow-y-auto overflow-x-hidden w-fit h-full mr-3'>
                     <p className={`${theme === "dark" ? 'bg-[rgb(13,13,13)]' : 'bg-white'} sticky top-0 text-center text-2xl font-bold text-indigo-500`}>Shorts</p>
@@ -124,6 +151,6 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
 
                 </div>} */}
             </div>
-            <Footer />
-        </div>)
+        </>)
+        // </div>)
 }

@@ -6,29 +6,34 @@ import Navbar from '@/app/components/Navbar';
 import { ThemeContext } from '@/app/context/ThemeProvider';
 import { UserContext } from '@/app/context/UserProvider';
 import { ThreeDots } from 'react-loader-spinner';
+import { Footer } from '@/app/components/footer/Footer';
 
 const page = () => {
-    const { name,id } = useParams();
-    const {userId} = useContext(UserContext);
+    const { name, id } = useParams();
+    const { userId } = useContext(UserContext);
     // console.log(name,id,userId);
-    const {theme} = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     return (
-        <div className={`h-[100vh] bg-${theme==="dark"?"[rgb(13,13,13)]":"white"}`}>
+        <div className={`bg-${theme === "dark" ? "[rgb(13,13,13)]" : "white"}`}>
             <Navbar />
-            {userId?<Space id={id as string} userId={userId}/>
-            :
-            <div className='flex flex-col justify-center items-center'>
-                <ThreeDots
-                    visible={true}
-                    height="80"
-                    width="80"
-                    color="black"
-                    radius="9"
-                    ariaLabel="three-dots-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                />
-            </div>}
+            {userId ?
+                <div className='flex flex-col justify-center items-center'>
+                    <Space id={id as string} userId={userId} />
+                    <Footer/>
+                </div>
+                :
+                <div className='h-[100vh] flex flex-col justify-center items-center'>
+                    <ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="black"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>}
         </div>
     )
 }

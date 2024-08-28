@@ -83,11 +83,11 @@ const SpaceList = () => {
                             return (
                                 // <div className='shadow-xl w-fit h-fit'>
                                 <Card sx={{ margin: "20px", backgroundColor: `${theme == "dark" && "black"}`, color: `${theme == "dark" && "rgb(203 213 225)"}` }} className={`w-full sm:w-[300px] md:w-[400px] sm:h-fit
-                                xl:h-[480px] shadow-xl ${theme == "dark" ? "shadow-black" : ""} relative`}>
+                                xl:h-[420px] shadow-xl ${theme == "dark" ? "shadow-black" : ""} relative`}>
                                     <CardMedia >
-                                        <img src={space.displayPhoto || "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className='brightness-50' height={100}/>
+                                        <img src={space.displayPhoto || "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className='brightness-50 h-[250px] w-full'/>
                                     </CardMedia>
-                                    <CardContent className='xl:absolute xl:bottom-0'>
+                                    <CardContent className='xl:absolute xl:bottom-2'>
                                         <Typography variant='h4' sx={{ fontWeight: "bold" }}>
                                             {space.title}
                                         </Typography>
