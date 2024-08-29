@@ -8,6 +8,7 @@ import { UserContext } from "@/app/context/UserProvider";
 import { useSession } from "next-auth/react";
 import { ThreeDots } from "react-loader-spinner";
 import "./css/space.css"
+import Link from "next/link";
 
 interface videoDataType {
     type: string,
@@ -119,7 +120,7 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                                             {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="w-[360px] h-[202px]" />}
                                         </CardMedia>
                                         <CardContent>
-                                            <p className={`text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{item.title}</p>
+                                            <Link className={`text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`} href={`/space/watch/${item.videoId}`}>{item.title}</Link>
                                             <p className={`text-lg text-slate-500 flex`}>
                                                 <img src={`${item.channelThumbnail?.length && item.channelThumbnail[0].url}`} className='rounded-full me-1' width={30} height={20} alt="" />
                                                 {item.channelTitle}
