@@ -21,9 +21,7 @@ const fetchVideos = async (query: string) => {
 
     try {
         const response = await axios.request(options);
-        //   console.log(response.data);
         cookies().set("continuation", response.data.continuation);
-        console.log(cookies().get("continuation"));
         return response.data;
     } catch (error) {
         console.error(error);
@@ -49,10 +47,10 @@ const fetchMoreVideos = async (query: string, token: any) => {
 
     try {
         const response = await axios.request(options);
-          console.log(response.data.continuation);
-        console.log(token);
-        cookies().set("continuation", response.data.continuation);
-        // console.log(cookies().get("continuation"));
+        cookies().delete("continuation");
+        if(response.data.continuation){
+            cookies().set("continuation", response.data.continuation);
+        }
         return response.data;
     } catch (error) {
         console.error(error);
@@ -90,7 +88,6 @@ export const GET = async (req: Request) => {
         const spaceId = urlSplit[urlSplit.length - 1].split("?")[0];
         const userId = urlSplit[urlSplit.length - 2];
 
-        console.log(page);
         const space = await Space.find({ _id: spaceId, userId });
         let query = space[0].category;
         if (space[0].tags) {
@@ -99,13 +96,16 @@ export const GET = async (req: Request) => {
             }
         }
         let videos;
-        if (parseInt(page) > 1) {
+        if (parseInt(page) > 1 && cookies().get("continuation")) {
             videos = await fetchMoreVideos(query, cookies().get("continuation"));
         }
-        else {
+        else if(parseInt(page) === 1) {
             videos = await fetchVideos(query);
         }
-
+        
+        // if(!videos){
+        //     return Response.json({ title: space[0].title, videos, status: 200, success: true })
+        // }
         return Response.json({ title: space[0].title, videos, status: 200, success: true });
     } catch (error) {
         console.log(error);

@@ -31,12 +31,18 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
     const observerRef = useRef<HTMLDivElement | null>(null);
 
     const [video, setVideo] = useState<videoDataType[]>([]);
+    const [more, setMore] = useState(true);
     const fetchData = async () => {
         try {
             setLoading(true);
             const res = await axios.get(`/api/space/get/${userId}/${id}?page=${page}`);
             console.log(res.data.videos);
-            setVideo((prevVideo) => [...video, ...res.data.videos.data]);
+            if(!res.data.videos){
+                setMore(false);
+                setLoading(false);
+                return;
+            }
+            setVideo(() => [...video, ...res.data.videos.data]);
             setName(res.data.title);
             setLoading(false);
         } catch (error) {
@@ -54,7 +60,7 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !loading) {
+            if (entries[0].isIntersecting && !loading && more) {
                 setPage((prevPage) => prevPage + 1);
             }
         });
