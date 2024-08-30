@@ -142,7 +142,7 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                     ariaLabel="color-ring-loading"
                     wrapperStyle={{}}
                     wrapperClass="color-ring-wrapper"
-                    colors={['black']}
+                    colors={['black','black','black','black','black']}
                 /></p>}
                 <div ref={observerRef} style={{ height: '20px', color: "white" }}></div>
 
