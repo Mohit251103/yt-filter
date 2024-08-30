@@ -7,7 +7,7 @@ import UserProvider from "./context/UserProvider";
 import { Toaster } from "react-hot-toast"
 import { ThemeProvider } from "./context/ThemeProvider";
 import { SidebarContext, SidebarContextProvider } from "./context/SidebarContext";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 import { roboto } from "./ui/fonts";
 import { EdgeStoreProvider } from '../lib/edgestore';
 
@@ -30,12 +30,14 @@ export default function RootLayout({
         <UserProvider>
           <SidebarContextProvider>
             <EdgeStoreProvider>
-              <html lang="en">
-                <body className={`${open_sans.className} antialiased`}>
-                  <Toaster />
-                  {children}
-                </body>
-              </html>
+              <Suspense>
+                <html lang="en">
+                  <body className={`${open_sans.className} antialiased`}>
+                    <Toaster />
+                    {children}
+                  </body>
+                </html>
+              </Suspense>
             </EdgeStoreProvider>
           </SidebarContextProvider>
         </UserProvider>
