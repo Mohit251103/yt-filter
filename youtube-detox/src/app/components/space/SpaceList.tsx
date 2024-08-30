@@ -52,18 +52,19 @@ const SpaceList = () => {
     }, [session])
 
     if (!spaceData) {
-        return <div className='flex flex-col justify-center items-center bg-white h-full w-full'>
-            <ThreeDots
-                visible={true}
-                height="80"
-                width="80"
-                color="black"
-                radius="9"
-                ariaLabel="three-dots-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
-            />
-        </div>
+        return <div className={`flex flex-col justify-center items-center ${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'}`}>
+                <ThreeDots
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="black"
+                    radius="9"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                />
+            </div>
+
     }
 
     return (

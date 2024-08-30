@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import { ThreeDots } from "react-loader-spinner";
 import "./css/space.css"
 import Link from "next/link";
+import { ColorRing } from "react-loader-spinner";
 
 interface videoDataType {
     type: string,
@@ -38,7 +39,7 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
             setLoading(true);
             const res = await axios.get(`/api/space/get/${userId}/${id}?page=${page}`);
             console.log(res.data.videos);
-            if(!res.data.videos){
+            if (!res.data.videos) {
                 setMore(false);
                 setLoading(false);
                 return;
@@ -88,7 +89,7 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
     // });
     if (!video.length) {
         return (
-            <div className='h-[95vh] flex flex-col justify-center items-center'>
+            <div className={`flex flex-col justify-center items-center h-[95vh] w-[100vw] ${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'}`}>
                 <ThreeDots
                     visible={true}
                     height="80"
@@ -100,29 +101,30 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                     wrapperClass=""
                 />
             </div>
+
         )
     }
     // shorts = shorts[shorts.length - 1];
     return (
         // <div className="flex flex-col justify-center items-center">
         <>
-            <p className={`text-center text-4xl font-bold ${theme === "dark" ? "text-white" : "text-black"} mb-4`}><span className='text-indigo-500'>{name[0].toUpperCase() + name.substring(1)}</span> Space</p>
+            <p className={`text-center md:text-4xl text-2xl text-2xl font-bold ${theme === "dark" ? "text-white" : "text-black"} mb-4`}><span className='text-indigo-500'>{name[0].toUpperCase() + name.substring(1)}</span> Space</p>
             <div className='flex flex-col w-[100vw] justify-center items-center overflow-y-scroll overflow-x-hidden'>
 
-                <div className='flex flex-wrap gap-4 w-[900px]'>
+                <div className='flex flex-wrap gap-4 lg:w-[900px] md:w-[80vw] w-[95vw]'>
                     {video.map((item) => {
                         if (item.type === 'video') {
                             return (
                                 <div className='relative'>
-                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display: "flex", flexDirection: "row" }} className="w-[900px]">
-                                        <CardMedia>
+                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display: "flex", flexDirection: "row" }} className="lg:w-[900px] w-[95vw]">
+                                        <CardMedia >
                                             {/* <div className={`w-[${item.thumbnail?.length && item.thumbnail[0].width}px] h-[${item.thumbnail?.length && item.thumbnail[0].height}px]`}></div> */}
-                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="w-[360px] h-[202px]" />}
+                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="lg:w-[360px] md:w-[35vw] lg:h-[202px] h-full w-[33vw]" />}
                                         </CardMedia>
-                                        <CardContent>
-                                            <Link className={`text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`} href={`/space/watch/${item.videoId}`}>{item.title}</Link>
-                                            <p className={`text-lg text-slate-500 flex`}>
-                                                <img src={`${item.channelThumbnail?.length && item.channelThumbnail[0].url}`} className='rounded-full me-1' width={30} height={20} alt="" />
+                                        <CardContent className="p-[8px]">
+                                            <Link className={`text-xs md:text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`} href={`/space/watch/${item.videoId}`}>{item.title}</Link>
+                                            <p className={`text-xs md:text-xl text-slate-500 flex`}>
+                                                <img src={`${item.channelThumbnail?.length && item.channelThumbnail[0].url}`} className='rounded-full me-1 h-[20px] w-[20px] md:h-[30px] md:w-[30px]' alt="" />
                                                 {item.channelTitle}
                                             </p>
                                         </CardContent>
@@ -133,7 +135,15 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                     })}
                 </div>
 
-                {loading && <p>Loading...</p>}
+                {loading && <p><ColorRing
+                    visible={true}
+                    height="50"
+                    width="50"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={['black']}
+                /></p>}
                 <div ref={observerRef} style={{ height: '20px', color: "white" }}></div>
 
                 {/* {shorts?.length && <div className='flex flex-col overflow-y-auto overflow-x-hidden w-fit h-full mr-3'>
@@ -159,5 +169,5 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                 </div>} */}
             </div>
         </>)
-        // </div>)
+    // </div>)
 }

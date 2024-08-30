@@ -37,7 +37,7 @@ const Dashboard = () => {
                 </div>
             </>
             :
-            <div className='flex flex-col justify-center items-center h-[100vh] w-[100vw]'>
+            <div className={`flex flex-col justify-center items-center h-[100vh] w-[100vw] ${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'}`}>
                 <ThreeDots
                     visible={true}
                     height="80"
