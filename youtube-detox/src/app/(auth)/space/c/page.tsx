@@ -16,12 +16,14 @@ import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
 import options from '@/app/api/auth/[...nextauth]/options';
 import { UserContext } from '@/app/context/UserProvider';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
   const { theme } = useContext(ThemeContext);
   const [file, setFile] = useState<File>();
   const { edgestore } = useEdgeStore();
   const {userId} = useContext(UserContext);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -50,6 +52,8 @@ const page = () => {
       
       const res = await axios.post(`/api/space/c?id=${userId}`,space);
       toast.success("Space created successfully");
+      router.push('/dashboard');
+
     } catch (error:any) {
       toast.error("Some error occured");
       console.log(error);
@@ -66,29 +70,29 @@ const page = () => {
       <Navbar />
       <div className='flex flex-col justify-center items-center h-[92vh]' onClick={()=>{setDrop(false); setOpen(false)}}>
         <div className='flex flex-col p-4 w-[400px] sm:w-[500px] h-fit overflow-y-auto oveflow-x-hidden'>
-          <h1 className={`text-4xl font-extrabold text-center my-2 ${theme == "dark" && "text-white"}`}>Add Space</h1>
+          <h1 className={`text-4xl font-extrabold text-center my-2 ${theme === "dark" ? 'text-white' : 'text-black'}`}>Add Space</h1>
           <form onSubmit={handleSubmit(submitSpace)} className={`flex flex-col mb-2`}>
 
             <div className='m-2'>
-              <label htmlFor="title" className={`text-sm font-bold ${theme == "dark" && "text-white"}`}>Title *</label>
+              <label htmlFor="title" className={`text-sm font-bold ${theme === "dark" ? 'text-white' : 'text-black'}`}>Title *</label>
               <input type='text' {...register("title")} className={`border rounded-md text-sm focus:border-sky-500 focus:outline-none p-2 w-full ${theme == "dark" ? "bg-black text-gray-300" : ""}`} placeholder='ex. Web Dev Learn Space' value={space.title} onChange={handleChange} name='title'/>
               {errors.title?.message && <p className='text-sm text-[red]'>{errors.title?.message.toString()}</p>}
             </div>
 
             <div className='m-2'>
-              <label htmlFor="category" className={`text-sm font-bold ${theme == "dark" && "text-white"}`}>What do you want to see in this space? *</label>
+              <label htmlFor="category" className={`text-sm font-bold ${theme === "dark" ? 'text-white' : 'text-black'}`}>What do you want to see in this space? *</label>
               <input type='text' {...register("category")} id='category' className={`border rounded-md text-sm focus:border-sky-500 focus:outline-none p-2 w-full ${theme == "dark" ? "bg-black text-gray-300" : ""}`} placeholder='ex. Reactjs' value={space.category} onChange={handleChange} name='category' />
               {errors.category?.message && <p className='text-sm text-[red]'>{errors.category?.message.toString()}</p>}
             </div>
 
             <div className='m-2'>
-              <label htmlFor="description" className={`text-sm font-bold ${theme == "dark" && "text-white"}`}>Description</label>
+              <label htmlFor="description" className={`text-sm font-bold ${theme === "dark" ? 'text-white' : 'text-black'}`}>Description</label>
               <textarea {...register("description")} rows={3} id='description' className={`border rounded-md text-sm focus:border-sky-500 focus:outline-none p-2 w-full ${theme == "dark" ? "bg-black text-gray-300" : ""} h-24 text-start`} placeholder='ex. This space was created for...' value={space.description} onChange={handleChange} name='description' />
               {errors.description?.message && <p className='text-sm text-[red]'>{errors.description?.message.toString()}</p>}
             </div>
 
             <div className='m-2'>
-              <label htmlFor="photo" className={`text-sm font-bold ${theme == "dark" && "text-white"}`}>Space Thumbnail</label>
+              <label htmlFor="photo" className={`text-sm font-bold ${theme === "dark" ? 'text-white' : 'text-black'}`}>Space Thumbnail</label>
               <SingleImageDropzone
                 width={100}
                 height={50}
@@ -126,18 +130,18 @@ const page = () => {
             </div>
 
             <div className='m-2'>
-              <label htmlFor="tag" className={`text-sm font-bold ${theme == "dark" && "text-white"}`}>Tags</label>
+              <label htmlFor="tag" className={`text-sm font-bold ${theme === "dark" ? 'text-white' : 'text-black'}`}>Tags</label>
               <input type='text' {...register("tags")} id='tag' className={`border rounded-md text-sm focus:border-sky-500 focus:outline-none p-2 w-full ${theme == "dark" ? "bg-black text-gray-300" : ""}`} placeholder='ex. #coding#webdev' value={space.tags} onChange={handleChange} name='tags' />
               {errors.tags?.message && <p className='text-sm text-[red]'>{errors.tags?.message.toString()}</p>}
             </div>
 
             <div className='m-2'>
-              <p className={`text-sm font-bold ${theme == "dark" && "text-white"}`}>Want to see shorts?</p>
+              <p className={`text-sm font-bold ${theme === "dark" ? 'text-white' : 'text-black'}`}>Want to see shorts?</p>
               <input type='radio' {...register("needShorts")} id='yes' className={`text-sm ml-2 ${theme == "dark" ? "bg-black text-gray-300" : ""}`} value='1' name='needShorts' onChange={(e: any) => e.target.checked && setSpace({ ...space, [e.target.name]: e.target.value })} checked/>
-              <label id='yes' className={`text-sm ml-1 ${theme == "dark" && "text-white"}`}>Yes</label>
+              <label id='yes' className={`text-sm ml-1 ${theme === "dark" ? 'text-white' : 'text-black'}`}>Yes</label>
 
               <input type='radio' {...register("needShorts")} id='no' className={`text-sm ml-2 ${theme == "dark" ? "bg-black text-gray-300" : ""}`} value='1' name='needShorts' onChange={(e: any) => e.target.checked && setSpace({ ...space, [e.target.name]: e.target.value })} />
-              <label id='no' className={`text-sm ml-1 ${theme == "dark" && "text-white"}`}>No</label>
+              <label id='no' className={`text-sm ml-1 ${theme === "dark" ? 'text-white' : 'text-black'}`}>No</label>
               {/* {errors.needShorts?.message && <p className='text-sm text-[red]'>{errors.needShorts?.message.toString()}</p>} */}
             </div>
             <Button variant='contained' className='mt-3' type='submit'>Create</Button>

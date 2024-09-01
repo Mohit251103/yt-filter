@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -11,11 +11,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { ThreeDots } from "react-loader-spinner"
+import { ThemeContext } from '@/app/context/ThemeProvider';
 
 const Profile = () => {
     const searchParams = useSearchParams();
     const type: string = searchParams.get('type') as string;
     const [loading, setLoading] = useState(false);
+    const {theme} = useContext(ThemeContext);
     if (type == 'first-time') {
         const {
             register,
@@ -42,7 +44,7 @@ const Profile = () => {
         }
 
         return (
-            <div className='h-[100vh] bg-white flex flex-col justify-center items-center'>
+            <div className={`h-[100vh] bg-white flex flex-col justify-center items-center ${theme === "dark" ? 'text-white' : 'text-black'}`}>
                 {!loading ?
                     <>
                         <div>

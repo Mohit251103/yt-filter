@@ -11,12 +11,12 @@ import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 import { UserContext } from '@/app/context/UserProvider';
 import Profile from '@/app/components/sidebar/Profile';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import ContrastIcon from '@mui/icons-material/Contrast';
 import { ThemeContext } from '@/app/context/ThemeProvider';
 import { useSession } from 'next-auth/react';
 import { SidebarContext } from '../context/SidebarContext';
 import SideNav from './sidebar/SideNav';
+import { blueGrey } from '@mui/material/colors';
 
 const Navbar = () => {
     const { data: session } = useSession();
@@ -31,7 +31,7 @@ const Navbar = () => {
     return (
         <div className={`flex fixed top-0 z-10 justify-between items-center ${drop && 'backdrop-blur-sm'} ${theme === "dark" ? "bg-black" : "bg-slate-100"} h-[7vh] sticky`}>
             <div className='rounded-full hover:cursor-pointer hover:rotate-180 transition duration-1000' onClick={handleClick}>
-                <MenuIcon className='mx-1' sx={{ color: `${theme == "dark" && 'white'}` }} />
+                <MenuIcon className='mx-1' sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
             </div>
             <div className='flex justify-between w-full  my-2'>
                 <div className={`flex justify-center items-center mx-1 transition duration-500 hover:-rotate-3`}>
@@ -39,7 +39,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='me-4' onClick={() => setTheme(theme == "light" ? "dark" : "light")}>
-                {theme == "light" ? <DarkModeIcon /> : <LightModeIcon sx={{ color: 'white' }} />}
+                <ContrastIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }}/>
             </div>
             <VerifiedIcon color='primary' />
             <div className='flex justify-center items-center me-2' onClick={() => setOpen(!open)}>

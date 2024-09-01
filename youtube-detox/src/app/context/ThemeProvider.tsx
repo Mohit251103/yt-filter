@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 interface ThemeContextType{
     theme:string,
@@ -13,6 +13,12 @@ const ThemeProvider = ({
     children
 }: { children: React.ReactNode }) => {
     const [theme, setTheme] = useState("light");
+
+    useEffect(()=>{
+        const systemTheme = window.matchMedia('(prefers-color-scheme:dark)').matches? "dark":"light";
+        setTheme(systemTheme);
+    },[])
+
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             {children}

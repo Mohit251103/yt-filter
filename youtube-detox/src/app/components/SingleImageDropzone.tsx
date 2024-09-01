@@ -5,6 +5,7 @@ import { UploadCloudIcon, X } from 'lucide-react';
 import * as React from 'react';
 import { useDropzone, type DropzoneOptions } from 'react-dropzone';
 import { twMerge } from 'tailwind-merge';
+import { ThemeContext } from '../context/ThemeProvider';
 
 const variants = {
   base: 'relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
@@ -47,6 +48,9 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
     { dropzoneOptions, width, height, value, className, disabled, onChange },
     ref,
   ) => {
+
+    const {theme} = React.useContext(ThemeContext);
+
     const imageUrl = React.useMemo(() => {
       if (typeof value === 'string') {
         // in case an url is passed in, use it to display the image
@@ -147,7 +151,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
               <UploadCloudIcon className="mb-2 h-7 w-7" />
               <div className="text-gray-400">drag & drop to upload</div>
               <div className="mt-3">
-                <Button type="button" disabled={disabled}>
+                <Button type="button" disabled={disabled} className={`bg-slate-500/50 text-gray-200`}>
                   select
                 </Button>
               </div>
