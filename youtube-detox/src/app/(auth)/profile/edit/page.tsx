@@ -17,7 +17,7 @@ const Profile = () => {
     const searchParams = useSearchParams();
     const type: string = searchParams.get('type') as string;
     const [loading, setLoading] = useState(false);
-    const {theme} = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     if (type == 'first-time') {
         const {
             register,
@@ -44,22 +44,23 @@ const Profile = () => {
         }
 
         return (
-            <div className={`h-[100vh] bg-white flex flex-col justify-center items-center ${theme === "dark" ? 'text-white' : 'text-black'}`}>
+            <div className={`h-[100vh] bg-white flex flex-col justify-center items-center relative ${theme === "dark" ? 'text-white bg-[rgb(13,13,13)]' : 'text-black'}`}>
                 {!loading ?
                     <>
-                        <div>
-                            <img src="/filtered2.png" alt="" />
+                        <div className='absolute top-3'>
+                            {theme == "light" && <img src='/filtered2.png' className='md:w-[13vw] w-[20vw] '></img>}
+                            {theme === "dark" && <img src='/filtered-dark.png' className='md:w-[12vw] w-[20vw]' />}
                         </div>
                         <div className='font-bold'>
-                            <p className='text-3xl '>Welcome to <span className='text-red-500'>filtered.</span></p>
-                            <p className='text-xl'>The only solution to a filtered feed space</p>
+                            <p className='text-3xl max-md:text-2xl text-center'>Welcome to <span className='text-red-500'>filtered.</span></p>
+                            <p className='text-xl max-md:text-lg text-center'>The only solution to a filtered feed space</p>
                         </div>
-                        <div className='h-fit w-[25%] border border-2 m-5 rounded-2xl p-3'>
+                        <div className='h-fit w-[25%] max-md:w-[55%] border border-2 m-5 rounded-2xl p-3'>
                             <p className='text-xl text-center'>Create a username</p>
                             <form onSubmit={handleSubmit(changeUsername)} className='flex flex-col my-3'>
                                 <TextField {...register('username')} id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setUsername(e.target.value)} value={username} />
                                 {errors.username?.message && <p className='text-sm text-[red]'>{errors.username?.message.toString()}</p>}
-                                <Button type="submit" variant='outlined' className='w-1/4 my-2'>Proceed</Button>
+                                <Button type="submit" variant='outlined' className='md:w-[30%] max-md:w-full my-2'>Proceed</Button>
                             </form>
                         </div>
                     </> :

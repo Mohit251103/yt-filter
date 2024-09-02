@@ -1,12 +1,10 @@
 import StarsIcon from '@mui/icons-material/Stars';
-import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import HomeIcon from '@mui/icons-material/Home';
 import { useContext, useEffect, useState } from 'react';
 // import { UserContext } from '@/app/context/UserProvider';
 import { ThemeContext } from '@/app/context/ThemeProvider';
-import { signOut } from 'next-auth/react';
 import { SidebarContext } from '@/app/context/SidebarContext';
 import { useRouter } from 'next/navigation';
 import { blueGrey } from '@mui/material/colors';
@@ -39,12 +37,7 @@ const SideNav = () => {
                 <StarsIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Get Pro</p>}
             </div>
-            {drop ? <button className={`text-sm rounded-lg bg-indigo-500/50 p-2 mb-2 font-sans font-medium hover:shadow-lg hover:shadow-indigo-500 self-center ${theme === "dark" ? 'text-white' : 'text-black'} `} onClick={() => { signOut({ callbackUrl: "/" }) }}><LogoutIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} /> Sign Out</button>
-                :
-                <div className="mb-4 rounded-xl hover:bg-indigo-500/50 p-2 absolute bottom-0" onClick={() => { signOut({ callbackUrl: "/sign-in" }) }}>
-                    <LogoutIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
-                </div>
-            }
+            
         </div>
     )
 }

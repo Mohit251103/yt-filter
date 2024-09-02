@@ -14,8 +14,15 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
-        'spin-slow': 'spin 3s linear 1',
-      }
+        forwardSpin:'spin 5s linear infinite',
+        reverseSpin: 'reverse-spin 5s linear infinite',
+      },
+      keyframes: {
+        'reverse-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-360deg)' }, 
+        },
+      },
     },
   },
   plugins: [],

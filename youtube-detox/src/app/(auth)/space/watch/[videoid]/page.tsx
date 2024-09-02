@@ -29,7 +29,7 @@ interface channelDataType {
 
 const page = () => {
     const { videoid } = useParams();
-    const { setDrop } = useContext(SidebarContext);
+    const { setDrop,setOpen } = useContext(SidebarContext);
     const { theme } = useContext(ThemeContext);
     const [data, setData] = useState<videoDataType>();
     const [expand, setExpand] = useState(false);
@@ -122,7 +122,7 @@ const page = () => {
     return (
         <div className={`bg-${theme === "dark" ? "[rgb(13,13,13)]" : "white"} ${!expand?"md:h-[100vh]":""} lg:h-auto`}>
             <Navbar />
-            <div className={`flex flex-col ${theme === "dark" ? 'text-white' : 'text-black'}`} onClick={() => setDrop(false)}>
+            <div className={`flex flex-col ${theme === "dark" ? 'text-white' : 'text-black'}`} onClick={() => {setDrop(false); setOpen(false);}}>
                 <div className="w-full flex justify-center bg-[rgb(13,13,13)]">
                     <Player id={videoid as string} />
                 </div>

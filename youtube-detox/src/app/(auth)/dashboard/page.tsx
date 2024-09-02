@@ -13,6 +13,7 @@ import SideNav from '@/app/components/sidebar/SideNav';
 import { SidebarContext } from '@/app/context/SidebarContext';
 import SpaceList from '@/app/components/space/SpaceList';
 import { Footer } from '@/app/components/footer/Footer';
+import toast from 'react-hot-toast';
 
 
 const Dashboard = () => {
@@ -21,6 +22,7 @@ const Dashboard = () => {
 
     const { drop, setDrop, open, setOpen } = useContext(SidebarContext);
     useEffect(() => {
+        if(!session) return;
         setLoading(false);
     }, [session])
 
@@ -29,11 +31,17 @@ const Dashboard = () => {
     return (
         !loading ?
             <>
-                <div className={`${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'} h-[100vh] w-[100vw]`} >
+                <div className={`${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'}`} >
                     <Navbar />
-                    <div className='overflow-auto' onClick={() => {setDrop(false); setOpen(false)}}>
+                    {/* <div className='text-center my-2vh'>
+                        <p className='max-sm:text-xl text-2xl text-gray-400 font-bold'>Welcome, <span className='text-indigo-400'>{session?.user.username}</span></p>
+                    </div> */}
+                    <div className='overflow-hidden' onClick={() => { setDrop(false); setOpen(false) }}>
                         <SpaceList />
                     </div>
+                    {/* <div className='absolute bottom-1 md:left-[45vw] max-sm:left-[28vw] max-sm:text-lg'> */}
+                    <Footer></Footer>
+                    {/* </div> */}
                 </div>
             </>
             :

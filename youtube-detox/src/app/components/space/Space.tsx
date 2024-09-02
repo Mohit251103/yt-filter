@@ -116,13 +116,13 @@ export const Space = ({ id, userId }: { id: string, userId: string }) => {
                         if (item.type === 'video') {
                             return (
                                 <div className='relative'>
-                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display: "flex", flexDirection: "row" }} className="lg:w-[900px] w-[95vw]">
+                                    <Card sx={{ backgroundColor: theme === "dark" ? "black" : "white", display: "flex", flexDirection: "row" }} className="lg:w-[900px] w-[95vw] md:w-[80vw]">
                                         <CardMedia >
                                             {/* <div className={`w-[${item.thumbnail?.length && item.thumbnail[0].width}px] h-[${item.thumbnail?.length && item.thumbnail[0].height}px]`}></div> */}
-                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="lg:w-[360px] md:w-[35vw] lg:h-[202px] h-full w-[33vw]" />}
+                                            {item.thumbnail?.length && <img src={item.thumbnail[0].url} className="lg:w-[360px] md:w-[30vw] lg:h-[202px] h-full w-[33vw]" />}
                                         </CardMedia>
                                         <CardContent className="p-[8px]">
-                                            <Link className={`text-xs md:text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`} href={`/space/watch/${item.videoId}`}>{item.title}</Link>
+                                            <Link className={`text-xs md:text-[1.1rem] lg:text-xl ${theme === 'dark' ? 'text-white' : 'text-black'}`} href={`/space/watch/${item.videoId}`}>{item.title}</Link>
                                             <p className={`text-xs md:text-xl text-slate-500 flex`}>
                                                 <img src={`${item.channelThumbnail?.length && item.channelThumbnail[0].url}`} className='rounded-full me-1 h-[20px] w-[20px] md:h-[30px] md:w-[30px]' alt="" />
                                                 {item.channelTitle}

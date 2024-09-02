@@ -14,12 +14,12 @@ const page = () => {
     const { userId } = useContext(UserContext);
     // console.log(name,id,userId);
     const { theme } = useContext(ThemeContext);
-    const {setDrop} = useContext(SidebarContext);
+    const {setDrop, setOpen} = useContext(SidebarContext);
     return (
         <div className={`bg-${theme === "dark" ? "[rgb(13,13,13)]" : "white"}`}>
             <Navbar />
             {userId ?
-                <div className='flex flex-col justify-center items-center overflow-x-hidden' onClick={()=>setDrop(false)}>
+                <div className='flex flex-col justify-center items-center overflow-x-hidden' onClick={()=>{setDrop(false); setOpen(false);}}>
                     <Space id={id as string} userId={userId} />
                     <Footer/>
                 </div>
