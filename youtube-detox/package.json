@@ -19,6 +19,7 @@
     "@mui/material": "^5.16.0",
     "axios": "^1.7.5",
     "js-cookie": "^3.0.5",
+    "lucide": "^0.441.0",
     "lucide-react": "^0.427.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.0",
