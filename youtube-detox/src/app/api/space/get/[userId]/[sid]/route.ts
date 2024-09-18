@@ -1,7 +1,6 @@
 import dbconnect from "@/utils/dbConfig";
 import { Space } from "@/app/models/spaces/space-model";
 import axios from "axios";
-import { duration } from "@mui/material";
 import { cookies } from "next/headers";
 
 const fetchVideos = async (query: string) => {

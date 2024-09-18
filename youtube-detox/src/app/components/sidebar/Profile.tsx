@@ -18,7 +18,7 @@ const Profile = () => {
 
       <div className={`text-sm font-bold mb-2`}>{session?.user.username}</div>
 
-      <button className='p-2 border-indigo-600 border-2 hover:bg-indigo-500 text-white-100 rounded-lg hover:scale-105 text-sm font-semibold' onClick={() => { signOut({ callbackUrl: "/sign-in" }) }}>
+      <button className='p-2 border-indigo-600 border-2 hover:bg-indigo-500 text-white-100 rounded-lg hover:scale-105 text-sm font-semibold' onClick={() => { signOut({ callbackUrl: "/" }) }}>
         <LogoutIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />Log Out</button>
     </div>
   )
