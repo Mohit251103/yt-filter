@@ -22,21 +22,13 @@ const SideNav = () => {
     return (
         <div className={`absolute left-2 top-14 rounded-md border-2 z-10 w-fit flex flex-col items-start p-1 bg-${theme==="dark"?"black":"white"}`}>
             <div className={`flex mb-4 mt-2 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer ${pathname==='/dashboard'?'bg-indigo-500/50':''}`} onClick={(e)=>{e.preventDefault(); router.push('/dashboard')}}>
-                <HomeIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
+                <HomeIcon />
                 {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Home</p>}
             </div>
             <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer ${pathname==='/space/c'?'bg-indigo-500/50':''}`} onClick={(e)=>{e.preventDefault(); router.push('/space/c')}}>
-                <AddCircleOutlineIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
+                <AddCircleOutlineIcon />
                 {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Add Space</p>}
             </div>
-            {/* <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer`}>
-                <SubscriptionsIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
-                {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Your Spaces</p>}
-            </div>
-            <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer`}>
-                <StarsIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
-                {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Get Pro</p>}
-            </div> */}
             
         </div>
     )

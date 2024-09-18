@@ -26,7 +26,7 @@ const Navbar = () => {
     const { profilePhoto, username }: { profilePhoto: string, username: string } = useContext(UserContext);
     const { theme, setTheme } = useContext(ThemeContext);
 
-    const [pathname, setPathname] = useState(window.location.pathname);
+    const [pathname, setPathname] = useState("");
     const router = useRouter();
     const handleClick = (e: any) => {
         e.preventDefault();
