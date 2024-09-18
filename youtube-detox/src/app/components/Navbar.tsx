@@ -39,7 +39,7 @@ const Navbar = () => {
     
     return (
         <div className={`flex fixed top-0 z-10 justify-between items-center ${drop && 'backdrop-blur-sm'} ${theme === "dark" ? "bg-black" : "bg-slate-100"} h-[7vh] sticky px-3`}>
-            <div>
+            <div className='flex items-center'>
                 <div className='rounded-full hover:cursor-pointer hover:rotate-180 transition duration-1000 sm:hidden' onClick={handleClick}>
                     <MenuIcon className='mx-1' sx={{ color: `${theme == "dark" ? blueGrey[50] : blueGrey[900]}` }} />
                 </div>
