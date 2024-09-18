@@ -9,13 +9,12 @@ export async function middleware(req: NextRequest) {
     const username = cookies().get("username")?.value;
     const url = req.nextUrl;
     const pathname = url.pathname;
-    // console.log(url.pathname);
-    if (token && (pathname === "/sign-in" || pathname === "/")) {
+    if (token && (pathname === "/api/auth/signin" || pathname === "/")) {
         return NextResponse.redirect(new URL('/dashboard', req.url));
     }
     
     if (!token && pathname === "/dashboard") {
-        return NextResponse.redirect(new URL('/', req.url))
+        return NextResponse.redirect(new URL('/api/auth/signin', req.url));
     }
 
     if (pathname === "/dashboard" && !token?.username && !username) {

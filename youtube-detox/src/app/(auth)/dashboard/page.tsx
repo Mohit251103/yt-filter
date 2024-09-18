@@ -14,17 +14,25 @@ import { SidebarContext } from '@/app/context/SidebarContext';
 import SpaceList from '@/app/components/space/SpaceList';
 import { Footer } from '@/app/components/footer/Footer';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 
 const Dashboard = () => {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     const { drop, setDrop, open, setOpen } = useContext(SidebarContext);
     useEffect(() => {
-        if(!session) return;
+        if(status == "loading") return;
         setLoading(false);
     }, [session])
+
+    useEffect(()=>{
+        if(status == "unauthenticated"){
+            router.push("/api/auth/signin");
+        }
+    },[status]);
 
 
     const { theme, setTheme } = useContext(ThemeContext);
