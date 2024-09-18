@@ -29,14 +29,14 @@ const SideNav = () => {
                 <AddCircleOutlineIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Add Space</p>}
             </div>
-            <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer`}>
+            {/* <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer`}>
                 <SubscriptionsIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Your Spaces</p>}
             </div>
             <div className={`flex mb-4 rounded-xl hover:bg-indigo-500/50 p-2 w-full hover:cursor-pointer`}>
                 <StarsIcon sx={{ color: `${theme == "dark"?blueGrey[50]:blueGrey[900]}` }} />
                 {drop && <p className={`ms-2 text-base font-medium ${theme === "dark" ? 'text-white' : 'text-black'}`}>Get Pro</p>}
-            </div>
+            </div> */}
             
         </div>
     )
