@@ -14,7 +14,7 @@ const Profile = () => {
   const {setOpen} = useContext(SidebarContext);
   return (
     <div className='fixed bg-black backdrop-blur-sm bg-opacity-25 w-full h-full top-0 left-0 flex justify-center items-center'>
-      <div className={`w-[200px] h-fit ${theme == "dark" ? "bg-black text-slate-200" : "bg-white border-2 text-black"} rounded-lg p-6 flex flex-col justify-center items-center absolute max-sm:left-[25vw] relative`}>
+      <div className={`w-[200px] h-fit ${theme == "dark" ? "bg-black text-slate-200" : "bg-white border-2 text-black"} rounded-lg p-6 flex flex-col justify-center items-center absolute relative`}>
         <div className='absolute top-1 right-1' onClick={()=>{ setOpen(false); }}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
         </div>
