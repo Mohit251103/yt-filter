@@ -86,8 +86,8 @@ const SpaceList = () => {
             <div className='flex flex-col justify-center items-center h-[89vh] w-full'>
                 {!spaceData.length ?
                     <div className='relative w-full h-full flex flex-col justify-center items-center opacity-[0.55]'>
-                        <div className={`text-center max-sm:text-xl text-2xl font-bold ${theme === "dark" ? "text-slate-100" : ""}`}>
-                            <p>Maintain some <span className='text-indigo-600'>Space </span>from      <span className='relative'>
+                        <div className={`text-center max-sm:text-xl text-2xl font-bold ${theme === "dark" ? "text-slate-100" : "text-black"}`}>
+                            <p>Maintain some <span className='text-indigo-600'>Space </span>from <span className='relative'>
                                 Youtube
                                 <span className='bg-indigo-600 w-full absolute h-[3px] top-1/2 left-0'></span>
                             </span></p>
@@ -105,7 +105,7 @@ const SpaceList = () => {
                                     <Card sx={{ margin: "20px", backgroundColor: `${theme == "dark" && "black"}`, color: `${theme == "dark" && "rgb(203 213 225)"}` }} className={`w-full sm:w-[300px] md:w-[400px] max-lg:h-fit
                                 xl:h-[420px] shadow-xl ${theme == "dark" ? "shadow-black" : ""} relative`}>
                                         <CardMedia >
-                                            <img src={space.displayPhoto || "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className='brightness-50 h-[250px] w-full' />
+                                            <img src={space.displayPhoto || "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className={`${theme=="dark"?"brightness-50":""} h-[250px] w-full`} />
                                         </CardMedia>
                                         <CardContent className='xl:absolute xl:bottom-2'>
                                             <Typography variant='h4' sx={{ fontWeight: "bold" }}>

@@ -34,6 +34,7 @@ const page = () => {
     const [data, setData] = useState<videoDataType>();
     const [expand, setExpand] = useState(false);
     const overflow = useRef<HTMLDivElement>(null);
+    const [noOfLine, setNoOfLine] = useState<number>(0);
     // const [overflowing, setOverflowing] = useState(false);
 
     const fetchChannelDetails = async (channelId: string) => {
@@ -101,6 +102,11 @@ const page = () => {
     //     }
     // }, [data?.description]);
 
+    useEffect(()=>{
+        window.matchMedia("(max-width: 	640px)")? setNoOfLine(2) : setNoOfLine(5);
+    },[])
+
+
     if (!data) {
         return (
             <div className={`flex flex-col justify-center items-center h-[100vh] w-[100vw] ${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'}`}>
@@ -142,7 +148,7 @@ const page = () => {
                     >
                         <p className="font-bold">{data.viewCount} views</p>
                         <>
-                            {data?.description.split("\n").filter((line, index) => index < 5).map((line, index) => {
+                            {data?.description.split("\n").filter((line, index) => index < noOfLine).map((line, index) => {
                                 const urlRegex = /(https?:\/\/[^\s]+)/g;
                                 const parts = line.split(urlRegex);
                                 return (
