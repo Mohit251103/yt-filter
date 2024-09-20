@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SpaceFormSchema } from '@/validators/space-form-schema';
 import { Button } from '@mui/material';
-import { Footer } from '@/app/components/footer/Footer';
 import { SingleImageDropzone } from '@/app/components/SingleImageDropzone';
 import { useEdgeStore } from '@/lib/edgestore';
 import "../css/space.css"
@@ -146,7 +145,6 @@ const page = () => {
             </div>
             <Button variant='contained' className='mt-3' type='submit'>Create</Button>
           </form>
-          <Footer />
         </div>
       </div>
     </div>

@@ -48,7 +48,6 @@ const Dashboard = () => {
                         <SpaceList />
                     </div>
                     {/* <div className='absolute bottom-1 md:left-[45vw] max-sm:left-[28vw] max-sm:text-lg'> */}
-                    <Footer></Footer>
                     {/* </div> */}
                 </div>
             </>

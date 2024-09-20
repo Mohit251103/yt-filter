@@ -6,7 +6,6 @@ import Navbar from '@/app/components/Navbar';
 import { ThemeContext } from '@/app/context/ThemeProvider';
 import { UserContext } from '@/app/context/UserProvider';
 import { ThreeDots } from 'react-loader-spinner';
-import { Footer } from '@/app/components/footer/Footer';
 import { SidebarContext } from '@/app/context/SidebarContext';
 
 const page = () => {
@@ -21,7 +20,6 @@ const page = () => {
             {userId ?
                 <div className='flex flex-col justify-center items-center overflow-x-hidden' onClick={()=>{setDrop(false); setOpen(false);}}>
                     <Space id={id as string} userId={userId} />
-                    <Footer/>
                 </div>
                 :
                 <div className={`flex flex-col justify-center items-center h-[100vh] w-[100vw] ${theme == "light" ? 'bg-white' : 'bg-[rgb(13,13,13)]'}`}>

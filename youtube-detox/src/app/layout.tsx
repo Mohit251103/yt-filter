@@ -10,6 +10,7 @@ import { SidebarContext, SidebarContextProvider } from "./context/SidebarContext
 import { Suspense, useContext } from "react";
 import { roboto } from "./ui/fonts";
 import { EdgeStoreProvider } from '../lib/edgestore';
+import { Footer } from "./components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export default function RootLayout({
                   <body className={`${open_sans.className} antialiased`}>
                     <Toaster />
                     {children}
+                    {/* <Footer/> */}
                   </body>
                 </html>
               </Suspense>

@@ -5,8 +5,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from "next/navigation";
-// import "./css/space.css"
-import { Footer } from '../footer/Footer';
 import { ThemeContext } from '@/app/context/ThemeProvider';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -83,7 +81,7 @@ const SpaceList = () => {
     
     return (
         <>
-            <div className='flex flex-col justify-center items-center h-[89vh] w-full'>
+            <div className='flex flex-col justify-center items-center h-[93vh] w-full'>
                 {!spaceData.length ?
                     <div className='relative w-full h-full flex flex-col justify-center items-center opacity-[0.55]'>
                         <div className={`text-center max-sm:text-xl text-2xl font-bold ${theme === "dark" ? "text-slate-100" : "text-black"}`}>
